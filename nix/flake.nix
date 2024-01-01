@@ -45,17 +45,29 @@
       inherit pre-commit-check;
     });
 
-    devShells = forEachSystem (system: {
-      default = nixpkgs.legacyPackages.${system}.mkShell {
-        nativeBuildInputs = with nixpkgs.legacyPackages.${system}; [
-          cargo
-          clippy
-          rust-analyzer
-          rustc
-          rustfmt
-        ];
+    devShells = forEachSystem (system: let
+      pkgs = nixpkgs.legacyPackages.${system};
+      craneDerivations = pkgs.callPackage ./default.nix {inherit crane;};
+    in {
+      default = pkgs.mkShell {
+        nativeBuildInputs = with pkgs;
+          [
+            cargo
+            clippy
+            rust-analyzer
+            rustc
+            rustfmt
+          ]
+          ++ craneDerivations.commonArgs.nativeBuildInputs;
 
-        inherit (self.checks.${system}.pre-commit-check) shellHook;
+        shellHook = ''
+          ${self.checks.${system}.pre-commit-check.shellHook}
+
+        '';
+        # export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:${
+        #   with pkgs;
+        #     lib.makeLibraryPath craneDerivations.commonArgs.buildInputs
+        # }"
       };
     });
   };

@@ -9,17 +9,20 @@
   commonArgs = {
     src = craneLib.cleanCargoSource ../.;
 
-    buildInputs = with pkgs; [
-      openssl
-    ];
+    # buildInputs = with pkgs; [
+    # libxkbcommon
+    # xorg.libX11
+    # xorg.libXcursor
+    # xorg.libXi
+    # ];
 
     nativeBuildInputs = with pkgs;
       [
-        pkg-config
+        ncurses5
       ]
-      ++ pkgs.lib.optionals pkgs.stdenv.isDarwin [
-        pkgs.darwin.apple_sdk.frameworks.Security
-        pkgs.libiconv
+      ++ lib.optionals stdenv.isDarwin [
+        darwin.apple_sdk.frameworks.Security
+        libiconv
       ];
   };
 
@@ -56,6 +59,7 @@
     });
 in {
   inherit
+    commonArgs
     myCrate
     myCrateClippy
     myCrateCoverage

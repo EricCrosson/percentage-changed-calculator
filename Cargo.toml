@@ -1,0 +1,20 @@
+[package]
+name = "percentage-changed-calculator"
+version = "0.1.0"
+edition = "2021"
+# TODO: add metadata
+# TODO: add GitHub Actions workflows. Is ncurses installed by default on GitHub-hosted runners?
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+crossterm = "0.27.0"
+ratatui = "0.25.0"
+tui-textarea = "0.4.0"
+
+[profile.dev]
+# Disabling debug info speeds up builds a bunch,
+# and we don't rely on it for debugging that much.
+debug = 0
+
+# TODO: port the usual configuration here
