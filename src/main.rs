@@ -146,7 +146,7 @@ fn calculate(textareas: &mut [TextArea]) {
     let initial_value = initial_textarea.lines().join("\n").parse::<f64>();
     let final_value = final_textarea.lines().join("\n").parse::<f64>();
     if let (Ok(initial_value), Ok(final_value)) = (initial_value, final_value) {
-        let percent_changed: f64 = (final_value - initial_value) / initial_value.abs();
+        let percent_changed: f64 = 100. * (final_value - initial_value) / initial_value.abs();
         // Delete all existing text
         percent_changed_textarea.move_cursor(tui_textarea::CursorMove::Down);
         percent_changed_textarea.delete_line_by_head();
