@@ -15,6 +15,7 @@ use tui_textarea::{Input, Key, TextArea};
 // DISCUSS: can we have a history? Like a TI-83 or WolframAlpha or something
 // TODO: allow changing any two fields and let the third populate.
 // - DISCUSS: how do we know which two are fixed and which is calculated?
+// TODO: when I clear data from one box, clear data from the other box to prevent misinformation
 
 fn main() -> io::Result<()> {
     let stdout = io::stdout();
