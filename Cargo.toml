@@ -1,8 +1,21 @@
 [package]
 name = "percentage-changed-calculator"
-version = "0.1.0"
+version = "0.0.0-semantic-release-configured"
 edition = "2021"
-# TODO: add metadata
+authors = ["Eric Crosson <eric.s.crosson@utexas.edu>"]
+license = "MIT OR Apache-2.0"
+readme = "README.md"
+repository = "https://github.com/EricCrosson/percentage-changed-calculator"
+homepage = "https://github.com/EricCrosson/percentage-changed-calculator"
+description = "Calculate the percentage relationship between numbers"
+keywords = ["cli", "percentage", "percent", "change"]
+categories = ["command-line-utilities"]
+exclude = [
+  "/.envrc",
+  "/.github",
+  "/flake.{lock,nix}",
+  "/nix"
+]
 # TODO: add GitHub Actions workflows. Is ncurses installed by default on GitHub-hosted runners?
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
@@ -17,4 +30,7 @@ tui-textarea = "0.4.0"
 # and we don't rely on it for debugging that much.
 debug = 0
 
-# TODO: port the usual configuration here
+[profile.release]
+lto = true
+codegen-units = 1
+strip = true
