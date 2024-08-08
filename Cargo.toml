@@ -23,7 +23,7 @@ exclude = [
 [dependencies]
 crossterm = "=0.27.0"
 ratatui = "=0.27.0"
-tui-textarea = "=0.5.3"
+tui-textarea = "=0.6.1"
 
 [profile.dev]
 # Disabling debug info speeds up builds a bunch,
