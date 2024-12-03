@@ -3,7 +3,7 @@
   system,
   crane,
 }: let
-  craneLib = crane.lib.${system};
+  craneLib = crane.mkLib pkgs;
 
   # Common derivation arguments used for all builds
   commonArgs = {

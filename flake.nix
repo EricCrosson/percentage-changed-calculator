@@ -3,7 +3,6 @@
     nixpkgs.url = "github:nixos/nixpkgs";
     crane = {
       url = "github:ipetkov/crane";
-      inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
