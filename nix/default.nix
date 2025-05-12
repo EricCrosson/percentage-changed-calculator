@@ -21,7 +21,6 @@
         ncurses5
       ]
       ++ lib.optionals stdenv.isDarwin [
-        darwin.apple_sdk.frameworks.Security
         libiconv
       ];
   };
